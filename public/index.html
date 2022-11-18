@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>NT LINE Official Account</title>
+
+    <script src="<%= VUE_APP_URL_LINE_SDK %>"></script>
+    <script src="<%= BASE_URL %>vconsole/vconsole.min.js"></script>
+    <!-- <script>
+        var vConsole = new VConsole();
+    </script> -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= process.env.VUE_APP_GTAG_CONFIG %>"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', "<%= process.env.VUE_APP_GTAG_CONFIG %>");
+    </script>
+</head>
+
+<body>
+    <noscript>
+        <strong></strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+</body>
+
+</html>

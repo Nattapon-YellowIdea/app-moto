@@ -1,0 +1,204 @@
+@import "./fonts.css";
+@import "./vuetify-ui.css";
+
+body {
+	padding: 0;
+	margin: 0;
+    font-family: NT !important;
+    font-size: 18px;
+	font-style: normal;
+    font-weight: 500;
+}
+
+
+.w-100 {
+    width: 100%;
+}
+.w-40 {
+    width: 40%;
+}
+.w-50 {
+    width: 50% !important;
+}
+.w-60 {
+    width: 60%;
+}
+.w-70 {
+    width: 70%;
+}
+.w-80 {
+    width: 80%;
+}
+
+.font-weight-1 {
+    font-weight: 300;
+}
+.font-weight-2 {
+    font-weight: 400;
+}
+.font-weight-3 {
+    font-weight: 500;
+}
+.font-weight-4 {
+    font-weight: 600;
+}
+.font-weight-5 {
+    font-weight: 700;
+}
+.font-weight-6 {
+    font-weight: 800;
+}
+.font-weight-7 {
+    font-weight: 900;
+}
+
+.font-size-1 {
+    font-size: 12px;
+}
+.font-size-2 {
+    font-size: 14px;
+}
+.font-size-3 {
+    font-size: 16px;
+}
+.font-size-4 {
+    font-size: 18px;
+}
+.font-size-5 {
+    font-size: 24px;
+}
+.font-size-6 {
+    font-size: 32px;
+}
+.font-size-7 {
+    font-size: 48px;
+}
+
+.text-primary {
+    color: #AB0202;
+}
+.text-success {
+    color: #3FB47D;
+}
+.text-danger {
+    color: #F62B2F;
+}
+.text-danger-2 {
+    color: #F04848;
+}
+.text-info {
+    color: #003294;
+}
+.text-mute {
+    color: #A6A8AB;
+}
+.text-secundary {
+    color: #545859;
+}
+.text-black {
+    color: #222222;
+}
+
+.text-underline {
+    text-decoration: underline;
+}
+.position-relative {
+    position: relative;
+}
+.box-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+.mt-22 {
+    margin-top: 22px;
+}
+.mb-8 {
+    margin-bottom: 8px;
+}
+.mb-20 {
+    margin-bottom: 20px;
+}
+.mb-22 {
+    margin-bottom: 22px;
+}
+
+.card-body{
+    word-wrap: break-word;
+}
+.titel-page {
+    font-family: NT;
+    font-weight: 700;
+    font-size: 24px !important;
+    text-align: center;
+    color: #222222;
+}
+.sub-titel-page {
+    font-family: NT;
+    font-weight: 700;
+    font-size: 18px !important;
+    text-align: center;
+    color: #222222;
+}
+.form-title {
+    font-weight: 700;
+    font-size: 18px;
+    color: #222222;
+    margin-bottom: 8px;
+}
+.form-group {
+    margin-bottom: 16px;
+}
+.form-group label {
+    font-family: NT;
+    font-weight: 400;
+    font-size: 18px;
+    color: #545859;
+    margin-bottom: 4px;
+    display: inline-block;
+}
+.form-group label .star {
+    color: red;
+}
+.message-error {
+    color: #F72B2F;
+    font-family: NT;
+    font-weight: 400;
+    font-size: 16px !important;
+    display: block;
+    margin-top: 4px;
+}
+
+.btn-link {
+    font-weight: 700;
+    font-size: 18px;
+    text-decoration: underline;
+    color: #003294 !important;
+}
+
+.term-condition-title {
+    font-weight: 700;
+    font-size: 18px;
+}
+.term-condition {
+    overflow: auto;
+    max-height: 500px;
+}
+.term-condition > .detail{
+    padding: 16px 24px !important;
+}
+
+.back-btn {
+    position: absolute;
+    left: 20px;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+}

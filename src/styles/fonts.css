@@ -1,0 +1,51 @@
+@font-face {
+    font-family: 'NT';
+    font-weight: 400;
+    src: url('../assets/fonts/NTFont/NTRegular.otf');
+}
+@font-face {
+    font-family: 'NT';
+    font-weight: 500;
+    src: url('../assets/fonts/NTFont/NTRegular.otf');
+}
+@font-face {
+    font-family: 'NT';
+    font-weight: 600;
+    src: url('../assets/fonts/NTFont/NTRegular.otf');
+}
+@font-face {
+    font-family: 'NT';
+    font-weight: 700;
+    src: url('../assets/fonts/NTFont/NTBold.otf');
+}
+@font-face {
+    font-family: 'NT';
+    font-weight: 800;
+    src: url('../assets/fonts/NTFont/NTBold.otf');
+}
+@font-face {
+    font-family: 'NT';
+    font-weight: 900;
+    src: url('../assets/fonts/NTFont/NTBold.otf');
+}
+
+@font-face {
+    font-family: 'SukhumvitTadmai';
+    font-weight: 500;
+    src: url('../assets/fonts/SukhumvitTadmai/05_SukhumvitTadmai_Med.otf');
+}
+@font-face {
+    font-family: 'SukhumvitTadmai';
+    font-weight: 600;
+    src: url('../assets/fonts/SukhumvitTadmai/04_SukhumvitTadmai_SeBold.otf');
+}
+@font-face {
+    font-family: 'SukhumvitTadmai';
+    font-weight: 700;
+    src: url('../assets/fonts/SukhumvitTadmai/SukhumvitTadmai_Bol.otf');
+}
+@font-face {
+    font-family: 'SukhumvitTadmai';
+    font-weight: 800;
+    src: url('../assets/fonts/SukhumvitTadmai/SukhumvitTadmai_ExBol.otf');
+}
