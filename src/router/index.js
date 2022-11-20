@@ -4,11 +4,26 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [
-    {
-        path: '/',
-        name: 'Index',
-        component: () => import('../views/Index.vue')
-    },
+  {
+    path: '/',
+    name: 'Index',
+    component: () => import('../views/Index.vue')
+  },
+  {
+    path: '/register',
+    name: 'Register Page',
+    component: () => import('../views/register/Form.vue')
+  },
+  {
+    path: '/register/success',
+    name: 'Register Success Page',
+    component: () => import('../views/register/Success.vue')
+  },
+  {
+    path: '/form',
+    name: 'Register form 3',
+    component: () => import('../views/form/form3.vue')
+  },
 ]
 
 const router = new VueRouter({

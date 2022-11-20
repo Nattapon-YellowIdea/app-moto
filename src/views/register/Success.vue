@@ -4,7 +4,7 @@
         <loading v-if="loading" color="#FFD100"/>
         <base-card :shadow="false" :cardFull="true">
             <template v-slot:header>
-                <div class="titel-page">ขอบคุณที่ให้ความสนใจ NT<br/>กรุณารอการติดต่อกลับจากเจ้าหน้าที่</div>
+                <div class="titel-page">ลงทะเบียนสำเร็จ</div>
             </template>
             <template v-slot:body>
                 <div class="d-flex justify-center mt-16">
@@ -33,10 +33,8 @@ export default {
         }
     },
     mounted() {
-        setTimeout(() => {
-            this.display = true
-            this.loading = false
-        }, 2000);
+        this.display = true
+        this.loading = false
     },
     methods: {
         onSubmit() {

@@ -21,7 +21,6 @@
 
 <script>
 import { Buffer } from 'buffer';
-import { getTermAndCondition, updateTermAndCondition } from '@/apis/term-and-conditon';
 
 export default {
     data() {
