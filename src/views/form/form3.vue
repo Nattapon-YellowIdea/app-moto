@@ -37,31 +37,31 @@
                         />
                     </div>
                     <div class="form-group">
-                        <base-input v-model="formData.email" placeholder="อีเมล*" />
+                        <base-input v-model="formData.email" placeholder="อีเมล" />
                     </div>
                     <div class="form-group">
                         <base-select-option
-                            v-model="formData.current_car_brand"
+                            v-model="formData.sex"
                             placeholder="เพศ*"
-                            :error="formDirty && !formData.current_car_brand"
+                            :error="formDirty && !formData.sex"
                             errorMessage="กรุณาเลือกเพศ"
                             :options="['ชาย', 'หญิง', 'ไม่ต้องการแจ้ง']"
                         />
                     </div>
                     <div class="form-group">
                         <base-select-option
-                            v-model="formData.current_car_brand"
+                            v-model="formData.age"
                             placeholder="อายุ*"
-                            :error="formDirty && !formData.current_car_brand"
+                            :error="formDirty && !formData.age"
                             errorMessage="กรุณาเลือกอายุ"
                             :options="age_list"
                         />
                     </div>
                     <div class="form-group">
                         <base-select-option
-                            v-model="formData.current_car_brand"
+                            v-model="formData.status"
                             placeholder="สถานะภาพ*"
-                            :error="formDirty && !formData.current_car_brand"
+                            :error="formDirty && !formData.status"
                             errorMessage="กรุณาเลือกสถานะภาพ"
                             :options="['โสด', 'สมรส']"
                         />
@@ -69,9 +69,9 @@
 
                     <div class="form-group">
                         <base-input
-                            v-model="formData.mobile"
+                            v-model="formData.child_amt"
                             placeholder="จำนวนบุตร (คน)*"
-                            :error="formDirty && formData.mobile.length < 9"
+                            :error="formDirty && !formData.child_amt"
                             errorMessage="กรุณากรอกจำนวนบุตร"
                             type="tel"
                             maxlength="2"
@@ -80,9 +80,9 @@
                     </div>
                     <div class="form-group">
                         <base-input
-                            v-model="formData.mobile"
+                            v-model="formData.family_member_amt"
                             placeholder="จำนวนสมาชิกในครอบครัว (คน)*"
-                            :error="formDirty && formData.mobile.length < 9"
+                            :error="formDirty && !formData.family_member_amt"
                             errorMessage="กรุณากรอกจำนวนสมาชิกในครอบครัวอ"
                             type="tel"
                             maxlength="2"
@@ -91,10 +91,10 @@
                     </div>
                     <div class="form-group">
                         <base-select-option
-                            v-model="formData.current_car_brand"
+                            v-model="formData.educate"
                             placeholder="การศึกษา*"
-                            :error="formDirty && !formData.current_car_brand"
-                            errorMessage="กรุณาการศึกษา*"
+                            :error="formDirty && !formData.educate"
+                            errorMessage="กรุณาเลือกการศึกษา*"
                             :options="educate_list"
                         />
                     </div>
@@ -121,9 +121,9 @@
                     </div>
                     <div class="form-group">
                         <base-select-option
-                            v-model="formData.current_car_brand"
+                            v-model="formData.monthly_income"
                             placeholder="รายได้ครอบครัวต่อเดือน*"
-                            :error="formDirty && !formData.current_car_brand"
+                            :error="formDirty && !formData.monthly_income"
                             errorMessage="กรุณาเลือกรายได้ครอบครัวต่อเดือน"
                             :options="monthly_income_list"
                         />
@@ -134,9 +134,9 @@
                     <div class="form-title">จุดประสงค์ในการซื้อรถ</div>
                     <div class="form-group">
                         <base-select-option
-                            v-model="formData.current_car_brand"
+                            v-model="formData.buying_purpose"
                             placeholder="จุดประสงค์ในการซื้อรถ*"
-                            :error="formDirty && !formData.current_car_brand"
+                            :error="formDirty && !formData.buying_purpose"
                             errorMessage="กรุณาเลือกจุดประสงค์ในการซื้อรถ"
                             :options="purpose_list"
                         />
@@ -149,9 +149,9 @@
                     <div class="form-group">
                         <label class="label-title">1. เครื่องยนต์อัตราเร่งดี</label>
                         <base-select-option
-                            v-model="formData.current_car_brand"
+                            v-model="formData.satisfaction_rate_1"
                             placeholder="ระดับความพึงพอใจ*"
-                            :error="formDirty && !formData.current_car_brand"
+                            :error="formDirty && !formData.satisfaction_rate_1"
                             errorMessage="กรุณาเลือกระดับความพึงพอใจ"
                             :options="
                                 satisfaction_rate.map((item) => {
@@ -166,9 +166,9 @@
                     <div class="form-group">
                         <label class="label-title">2. ภาพรวมความนุ่มนวลในการขับขี่</label>
                         <base-select-option
-                            v-model="formData.current_car_brand"
+                            v-model="formData.satisfaction_rate_2"
                             placeholder="ระดับความพึงพอใจ"
-                            :error="formDirty && !formData.current_car_brand"
+                            :error="formDirty && !formData.satisfaction_rate_2"
                             errorMessage="กรุณาเลือกระดับความพึงพอใจ"
                             :options="
                                 satisfaction_rate.map((item) => {
@@ -183,9 +183,9 @@
                     <div class="form-group">
                         <label class="label-title">3. การออกแบบดีไซน์ภายนอกโฉบเฉี่ยว</label>
                         <base-select-option
-                            v-model="formData.current_car_brand"
+                            v-model="formData.satisfaction_rate_3"
                             placeholder="ระดับความพึงพอใจ"
-                            :error="formDirty && !formData.current_car_brand"
+                            :error="formDirty && !formData.satisfaction_rate_3"
                             errorMessage="กรุณาเลือกระดับความพึงพอใจ"
                             :options="
                                 satisfaction_rate.map((item) => {
@@ -203,18 +203,18 @@
                     <div class="form-title">หลังทดลองขับ ท่านได้ทำอะไรต่อหรือไม่</div>
                     <div class="form-group">
                         <base-select-option
-                            v-model="formData.after_drive"
+                            v-model="formData.after_drive_test"
                             placeholder="หลังทดลองขับ ท่านได้ทำอะไรต่อหรือไม่*"
-                            :error="formDirty && !formData.after_drive"
+                            :error="formDirty && !formData.after_drive_test"
                             errorMessage="กรุณาเลือก"
                             :options="after_drive_list"
                         />
-                        <br v-if="formData.after_drive === 'ไม่ได้ทำอะไรต่อ / ไม่ได้จองรถ'" />
+                        <br v-if="formData.after_drive_test === 'ไม่ได้ทำอะไรต่อ / ไม่ได้จองรถ'" />
                         <base-select-option
-                            v-if="formData.after_drive === 'ไม่ได้ทำอะไรต่อ / ไม่ได้จองรถ'"
-                            v-model="formData.after_drive_reason"
+                            v-if="formData.after_drive_test === 'ไม่ได้ทำอะไรต่อ / ไม่ได้จองรถ'"
+                            v-model="formData.after_drive_test_reason"
                             placeholder="เพราะเหตุใด*"
-                            :error="formDirty && !formData.after_drive_reason"
+                            :error="formDirty && !formData.after_drive_test_reason"
                             errorMessage="กรุณาเลือก"
                             :options="after_drive_list_reason"
                         />
@@ -225,10 +225,10 @@
                     <div class="form-title">สนใจข้อเสนอรูปแบบใด (สินเชื่อเช่าซื้อ)</div>
                     <div class="form-group">
                         <base-select-option
-                            v-model="formData.current_car_brand"
+                            v-model="formData.offer"
                             placeholder="สนใจข้อเสนอรูปแบบใด (สินเชื่อเช่าซื้อ)*"
-                            :error="formDirty && !formData.current_car_brand"
-                            errorMessage="กรุณาเลือก"
+                            :error="formDirty && !formData.offer"
+                            errorMessage="กรุณาเลือกข้อเสนอ"
                             :options="offer_list"
                         />
                     </div>
@@ -238,10 +238,10 @@
                     <div class="form-title">ข้อเสนออื่นๆ</div>
                     <div class="form-group">
                         <base-select-option
-                            v-model="formData.current_car_brand"
+                            v-model="formData.other_offer"
                             placeholder="ข้อเสนออื่นๆ*"
-                            :error="formDirty && !formData.current_car_brand"
-                            errorMessage="กรุณาเลือกเพศ"
+                            :error="formDirty && !formData.other_offer"
+                            errorMessage="กรุณาเลือกข้อเสนออื่นๆ"
                             :options="other_offer_list"
                         />
                     </div>
@@ -290,6 +290,16 @@ export default {
                 family_member_amt: '',
                 educate: '',
                 career: '',
+                career_optional: '',
+                monthly_income: '',
+                buying_purpose: '',
+                satisfaction_rate_1: '',
+                satisfaction_rate_2: '',
+                satisfaction_rate_3: '',
+                after_drive_test: '',
+                after_drive_test_reason: '',
+                offer: '',
+                other_offer: '',
                 // line_user_id: userProfile.userId,
             },
             age_list: ['18 - 25 ปี', '26 - 35 ปี', '36 - 45 ปี', '46 - 55 ปี', '56 - 65 ปี', '66 ปีขึ้นไป'],
@@ -364,59 +374,67 @@ export default {
     methods: {
         async onSubmit() {
             this.formDirty = true;
+            if (
+                this.formData.first_name === '' ||
+                this.formData.last_name === '' ||
+                this.formData.mobile === '' ||
+                this.formData.sex === '' ||
+                this.formData.age === '' ||
+                this.formData.status === '' ||
+                this.formData.child_amt === '' ||
+                this.formData.family_member_amt === '' ||
+                this.formData.educate === '' ||
+                this.formData.career === '' ||
+                (this.formData.career === 'อื่นๆ' && this.formData.career_optional === '') ||
+                this.formData.monthly_income === '' ||
+                this.formData.buying_purpose === '' ||
+                this.formData.satisfaction_rate_1 === '' ||
+                this.formData.satisfaction_rate_2 === '' ||
+                this.formData.satisfaction_rate_3 === '' ||
+                this.formData.after_drive_test === '' ||
+                (this.formData.after_drive_test === 'ไม่ได้ทำอะไรต่อ / ไม่ได้จองรถ' &&
+                    this.formData.after_drive_test_reason === '') ||
+                this.formData.offer === '' ||
+                this.formData.other_offer === ''
+            ) {
+                this.$toast.warning('กรุณากรอกข้อมูลให้ครบ');
+            } else {
+                console.log(this.formData);
+                // this.btnLoading = true;
+                // this.loading = true;
+                // let addressStr = ``,
+                //     dateCombine;
+                // if (this.formData.no !== '' || this.formData.no !== '-') {
+                //     addressStr += this.formData.no;
+                // }
+                // if (this.formData.building !== '' || this.formData.building !== '-') {
+                //     addressStr += this.formData.building;
+                // }
+                // if (this.selectedTime === 'morning') {
+                //     dateCombine = `${this.formData.date_install.substring(0, 10)} 10:00:00`;
+                // }
+                // if (this.selectedTime === 'afternoon') {
+                //     dateCombine = `${this.formData.date_install.substring(0, 10)} 13:00:00`;
+                // }
 
-            // check if อื่นๆ !== ''
-
-            // if (
-            //     this.formData.first_name === '' ||
-            //     this.formData.last_name === '' ||
-            //     this.formData.mobile === '' ||
-            //     this.formData.email === '' ||
-            //     this.formData.nissan_customer === false ||
-            //     this.formData.current_car_brand === '' ||
-            //     this.formData.interested_car === '' ||
-            //     this.formData.buying_plan === '' ||
-            //     this.formData.buying_factor === '' ||
-            //     this.formData.consent === false
-            // ) {
-            //     this.$toast.warning('กรุณากรอกข้อมูลให้ครบ');
-            // } else {
-            console.log(this.formData);
-            // this.btnLoading = true;
-            // this.loading = true;
-            // let addressStr = ``,
-            //     dateCombine;
-            // if (this.formData.no !== '' || this.formData.no !== '-') {
-            //     addressStr += this.formData.no;
-            // }
-            // if (this.formData.building !== '' || this.formData.building !== '-') {
-            //     addressStr += this.formData.building;
-            // }
-            // if (this.selectedTime === 'morning') {
-            //     dateCombine = `${this.formData.date_install.substring(0, 10)} 10:00:00`;
-            // }
-            // if (this.selectedTime === 'afternoon') {
-            //     dateCombine = `${this.formData.date_install.substring(0, 10)} 13:00:00`;
-            // }
-
-            // this.formData.address = addressStr;
-            // this.formData.date_install = dateCombine;
-            // await LeadFormAPI({
-            //     formData: this.formData,
-            //     cbSuccess: (res) => {
-            //         if (res.status === 200) {
-            //             this.btnLoading = false;
-            //             this.loading = false;
-            //             this.$router.push('/register/fixed-line/form/success');
-            //         }
-            //     },
-            //     cbError: (e, msg) => {
-            //         this.btnLoading = false;
-            //         this.loading = false;
-            //         this.$toast.error('ระบบขัดข้อง');
-            //     },
-            // });
-            // }
+                // this.formData.address = addressStr;
+                // this.formData.date_install = dateCombine;
+                // await LeadFormAPI({
+                //     formData: this.formData,
+                //     cbSuccess: (res) => {
+                //         if (res.status === 200) {
+                //             this.btnLoading = false;
+                //             this.loading = false;
+                //             this.$router.push('/register/fixed-line/form/success');
+                //         }
+                //     },
+                //     cbError: (e, msg) => {
+                //         this.btnLoading = false;
+                //         this.loading = false;
+                //         this.$toast.error('ระบบขัดข้อง');
+                //     },
+                // });
+            }
         },
         onNumberInput(event) {
             const key = window.event ? event.keyCode : event.which;

@@ -255,58 +255,55 @@ export default {
     methods: {
         async onSubmit() {
             this.formDirty = true;
+            if (
+                this.formData.first_name === '' ||
+                this.formData.last_name === '' ||
+                this.formData.mobile === '' ||
+                this.formData.nissan_customer === null ||
+                this.formData.current_car_brand === '' ||
+                this.formData.interested_car.length === 0 ||
+                this.formData.buying_plan === '' ||
+                this.formData.buying_factor.length === 0 ||
+                this.formData.consent === false
+            ) {
+                this.$toast.warning('กรุณากรอกข้อมูลให้ครบ');
+            } else {
+                console.log(this.formData);
+                // this.btnLoading = true;
+                // this.loading = true;
+                // let addressStr = ``,
+                //     dateCombine;
+                // if (this.formData.no !== '' || this.formData.no !== '-') {
+                //     addressStr += this.formData.no;
+                // }
+                // if (this.formData.building !== '' || this.formData.building !== '-') {
+                //     addressStr += this.formData.building;
+                // }
+                // if (this.selectedTime === 'morning') {
+                //     dateCombine = `${this.formData.date_install.substring(0, 10)} 10:00:00`;
+                // }
+                // if (this.selectedTime === 'afternoon') {
+                //     dateCombine = `${this.formData.date_install.substring(0, 10)} 13:00:00`;
+                // }
 
-            // check if อื่นๆ !== ''
-
-            // if (
-            //     this.formData.first_name === '' ||
-            //     this.formData.last_name === '' ||
-            //     this.formData.mobile === '' ||
-            //     this.formData.nissan_customer === false ||
-            //     this.formData.current_car_brand === '' ||
-            //     this.formData.interested_car === '' ||
-            //     this.formData.buying_plan === '' ||
-            //     this.formData.buying_factor === '' ||
-            //     this.formData.consent === false
-            // ) {
-            //     this.$toast.warning('กรุณากรอกข้อมูลให้ครบ');
-            // } else {
-            console.log(this.formData);
-            // this.btnLoading = true;
-            // this.loading = true;
-            // let addressStr = ``,
-            //     dateCombine;
-            // if (this.formData.no !== '' || this.formData.no !== '-') {
-            //     addressStr += this.formData.no;
-            // }
-            // if (this.formData.building !== '' || this.formData.building !== '-') {
-            //     addressStr += this.formData.building;
-            // }
-            // if (this.selectedTime === 'morning') {
-            //     dateCombine = `${this.formData.date_install.substring(0, 10)} 10:00:00`;
-            // }
-            // if (this.selectedTime === 'afternoon') {
-            //     dateCombine = `${this.formData.date_install.substring(0, 10)} 13:00:00`;
-            // }
-
-            // this.formData.address = addressStr;
-            // this.formData.date_install = dateCombine;
-            // await LeadFormAPI({
-            //     formData: this.formData,
-            //     cbSuccess: (res) => {
-            //         if (res.status === 200) {
-            //             this.btnLoading = false;
-            //             this.loading = false;
-            //             this.$router.push('/register/fixed-line/form/success');
-            //         }
-            //     },
-            //     cbError: (e, msg) => {
-            //         this.btnLoading = false;
-            //         this.loading = false;
-            //         this.$toast.error('ระบบขัดข้อง');
-            //     },
-            // });
-            // }
+                // this.formData.address = addressStr;
+                // this.formData.date_install = dateCombine;
+                // await LeadFormAPI({
+                //     formData: this.formData,
+                //     cbSuccess: (res) => {
+                //         if (res.status === 200) {
+                //             this.btnLoading = false;
+                //             this.loading = false;
+                //             this.$router.push('/register/fixed-line/form/success');
+                //         }
+                //     },
+                //     cbError: (e, msg) => {
+                //         this.btnLoading = false;
+                //         this.loading = false;
+                //         this.$toast.error('ระบบขัดข้อง');
+                //     },
+                // });
+            }
         },
         onNumberInput(event) {
             const key = window.event ? event.keyCode : event.which;
