@@ -184,9 +184,7 @@
 </template>
 
 <script>
-// import { province, district, subDistrict } from '@/utility/address';
-// import { LeadFormAPI } from '@/apis/register-service';
-// import { checkEmojiAndSpecialChar, checkEmoji } from '@/utility/helper';
+import { registerForm } from '@/apis/api';
 
 export default {
     data() {
@@ -211,7 +209,7 @@ export default {
                 buying_plan: '',
                 buying_factor: [],
                 consent: false,
-                // line_user_id: userProfile.userId,
+                line_user_id: userProfile.userId,
             },
             current_car_brand_list: ['ไม่มี', 'FORD', 'TOYOTA', 'MAZDA', 'GWM', 'MITSUBISHI', 'ISUZU', 'MGHONDA', 'อื่นๆ'],
             interested_car_list: [
@@ -241,7 +239,7 @@ export default {
                 'บริการหลังการขาย',
                 'สมรรถนะของเครื่องยนต์',
                 'ประหยัดน้ำมัน / ไฟฟ้า',
-                'เปลี่ยนเป้นรถครอบครัว / รถที่ใหญ่ขึ้น',
+                'เปลี่ยนเป็นรถครอบครัว / รถที่ใหญ่ขึ้น',
                 'อยากมีสถานะทางสังคมที่ดี (social status)',
                 'อื่นๆ',
             ],
@@ -268,41 +266,24 @@ export default {
             ) {
                 this.$toast.warning('กรุณากรอกข้อมูลให้ครบ');
             } else {
-                console.log(this.formData);
-                // this.btnLoading = true;
-                // this.loading = true;
-                // let addressStr = ``,
-                //     dateCombine;
-                // if (this.formData.no !== '' || this.formData.no !== '-') {
-                //     addressStr += this.formData.no;
-                // }
-                // if (this.formData.building !== '' || this.formData.building !== '-') {
-                //     addressStr += this.formData.building;
-                // }
-                // if (this.selectedTime === 'morning') {
-                //     dateCombine = `${this.formData.date_install.substring(0, 10)} 10:00:00`;
-                // }
-                // if (this.selectedTime === 'afternoon') {
-                //     dateCombine = `${this.formData.date_install.substring(0, 10)} 13:00:00`;
-                // }
-
-                // this.formData.address = addressStr;
-                // this.formData.date_install = dateCombine;
-                // await LeadFormAPI({
-                //     formData: this.formData,
-                //     cbSuccess: (res) => {
-                //         if (res.status === 200) {
-                //             this.btnLoading = false;
-                //             this.loading = false;
-                //             this.$router.push('/register/fixed-line/form/success');
-                //         }
-                //     },
-                //     cbError: (e, msg) => {
-                //         this.btnLoading = false;
-                //         this.loading = false;
-                //         this.$toast.error('ระบบขัดข้อง');
-                //     },
-                // });
+                this.btnLoading = true;
+                this.loading = true;
+                
+                await registerForm({
+                    formData: this.formData,
+                    cbSuccess: (res) => {
+                        if (res.status === 200) {
+                            this.btnLoading = false;
+                            this.loading = false;
+                            this.$router.push('/register/success');
+                        }
+                    },
+                    cbError: (e, msg) => {
+                        this.btnLoading = false;
+                        this.loading = false;
+                        this.$toast.error('ระบบขัดข้อง');
+                    },
+                });
             }
         },
         onNumberInput(event) {

@@ -262,14 +262,13 @@
 </template>
 
 <script>
-// import { province, district, subDistrict } from '@/utility/address';
-// import { LeadFormAPI } from '@/apis/register-service';
-// import { checkEmojiAndSpecialChar, checkEmoji } from '@/utility/helper';
+import { checkRegister, form3 } from '@/apis/api';
 
 export default {
     data() {
         const userProfile = $cookies.get('LINE_LIFF_DATA');
         return {
+            userProfile,
             conditionTab: 0,
             display: false,
             loading: true,
@@ -300,7 +299,7 @@ export default {
                 after_drive_test_reason: '',
                 offer: '',
                 other_offer: '',
-                // line_user_id: userProfile.userId,
+                line_user_id: userProfile.userId,
             },
             age_list: ['18 - 25 ปี', '26 - 35 ปี', '36 - 45 ปี', '46 - 55 ปี', '56 - 65 ปี', '66 ปีขึ้นไป'],
             educate_list: ['ต่ำกว่าปริญญาตรี', 'ปริญญาตรีหรือเทียบเท่า', 'สูงกว่าปริญญาตรี'],
@@ -366,10 +365,7 @@ export default {
     },
     mounted() {
         document.title = 'ลงทะเบียน Form 3';
-        this.display = true;
-        this.loading = false;
-
-        //check register
+        this.checkRegister();
     },
     methods: {
         async onSubmit() {
@@ -399,42 +395,42 @@ export default {
             ) {
                 this.$toast.warning('กรุณากรอกข้อมูลให้ครบ');
             } else {
-                console.log(this.formData);
-                // this.btnLoading = true;
-                // this.loading = true;
-                // let addressStr = ``,
-                //     dateCombine;
-                // if (this.formData.no !== '' || this.formData.no !== '-') {
-                //     addressStr += this.formData.no;
-                // }
-                // if (this.formData.building !== '' || this.formData.building !== '-') {
-                //     addressStr += this.formData.building;
-                // }
-                // if (this.selectedTime === 'morning') {
-                //     dateCombine = `${this.formData.date_install.substring(0, 10)} 10:00:00`;
-                // }
-                // if (this.selectedTime === 'afternoon') {
-                //     dateCombine = `${this.formData.date_install.substring(0, 10)} 13:00:00`;
-                // }
+                this.btnLoading = true;
+                this.loading = true;
 
-                // this.formData.address = addressStr;
-                // this.formData.date_install = dateCombine;
-                // await LeadFormAPI({
-                //     formData: this.formData,
-                //     cbSuccess: (res) => {
-                //         if (res.status === 200) {
-                //             this.btnLoading = false;
-                //             this.loading = false;
-                //             this.$router.push('/register/fixed-line/form/success');
-                //         }
-                //     },
-                //     cbError: (e, msg) => {
-                //         this.btnLoading = false;
-                //         this.loading = false;
-                //         this.$toast.error('ระบบขัดข้อง');
-                //     },
-                // });
+                await form3({
+                    formData: this.formData,
+                    cbSuccess: (res) => {
+                        if (res.status === 200) {
+                            this.btnLoading = false;
+                            this.loading = false;
+                            this.$router.push('/form-3-success');
+                        }
+                    },
+                    cbError: (e, msg) => {
+                        this.btnLoading = false;
+                        this.loading = false;
+                        this.$toast.error('ระบบขัดข้อง');
+                    },
+                });
             }
+        },
+        async checkRegister() {
+            await checkRegister({
+                line_user_id: this.userProfile.userId,
+                cbSuccess: (res) => {
+                    if (res.status === 200 && res.data === null) {
+                        return this.$router.push('/register');
+                    }
+                    this.display = true;
+                    this.loading = false;
+                },
+                cbError: (e, msg) => {
+                    this.btnLoading = false;
+                    this.loading = false;
+                    this.$toast.error('ระบบขัดข้อง');
+                },
+            });
         },
         onNumberInput(event) {
             const key = window.event ? event.keyCode : event.which;

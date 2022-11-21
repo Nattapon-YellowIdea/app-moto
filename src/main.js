@@ -14,7 +14,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import ComponentRegistration from "./utility/components-registration"
-import { checkRegister } from './apis/e-service'
+// import { checkRegister } from './apis/api'
 
 import "@/styles/index.css"
 
@@ -46,23 +46,23 @@ document.documentElement.style.setProperty('--vh', `${vh}px`)
 async function runner() {
     const userData = $cookies.get("LINE_LIFF_DATA")
 
-    if (userData) {
-        checkRegister({
-            formData: {
-                line_user_id: userData.userId
-            },
-            cbSuccess: res => {
-                $cookies.set('USER_PROFILE', JSON.stringify(res.data.data))
+    // if (userData) {
+    //     checkRegister({
+    //         formData: {
+    //             line_user_id: userData.userId
+    //         },
+    //         cbSuccess: res => {
+    //             $cookies.set('USER_PROFILE', JSON.stringify(res.data.data))
                 new Vue({
                     router,
                     store,
                     vuetify,
                     render: h => h(App),
                 }).$mount('#app')
-            },
-            cbError: (e, msg) => { }
-        })
-    }
+    //         },
+    //         cbError: (e, msg) => { }
+    //     })
+    // }
 }
 
 function lineLogin(liff_id) {

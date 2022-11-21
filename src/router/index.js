@@ -24,6 +24,11 @@ const routes = [
     name: 'Register form 3',
     component: () => import('../views/form/form3.vue')
   },
+  {
+    path: '/form-3-success',
+    name: 'Register form 3 Success',
+    component: () => import('../views/form/form3-success.vue')
+  },
 ]
 
 const router = new VueRouter({
