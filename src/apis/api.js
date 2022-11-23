@@ -27,3 +27,8 @@ export const form3 = ({ formData, cbSuccess, cbError }) => request(
     service.post(`/api/form-service/form-3`, formData),
     { cbSuccess, cbError }
 )
+
+export const checkSubmitted = ({ formData, cbSuccess, cbError }) => request(
+    service.post(`/api/form-service/check-submitted`, formData),
+    { cbSuccess, cbError }
+)

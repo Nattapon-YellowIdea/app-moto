@@ -4,7 +4,7 @@
         <loading v-if="loading" color="#FFD100"/>
         <base-card :shadow="false" :cardFull="true">
             <template v-slot:header>
-                <div class="titel-page">ตอบแบบสอบถามสำเร็จ Form 3</div>
+                <div class="titel-page">ลงทะเบียนสำเร็จ</div>
             </template>
             <template v-slot:body>
                 <div class="d-flex justify-center mt-16">
@@ -14,7 +14,7 @@
             <template v-slot:footer>
                 <div class="d-flex justify-center align-center pa-6">
                     <base-button
-                        label="ปิดหน้าต่างนี้"
+                        label="ยืนยันรับของรางวัล"
                         @onClick="onSubmit"
                         shadow
                     />

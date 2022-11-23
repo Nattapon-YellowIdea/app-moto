@@ -20,7 +20,7 @@ const routes = [
     component: () => import('../views/register/Success.vue')
   },
   {
-    path: '/form',
+    path: '/form-3',
     name: 'Register form 3',
     component: () => import('../views/form/form3.vue')
   },
@@ -28,6 +28,16 @@ const routes = [
     path: '/form-3-success',
     name: 'Register form 3 Success',
     component: () => import('../views/form/form3-success.vue')
+  },
+  {
+    path: '/form-2',
+    name: 'Register form 2',
+    component: () => import('../views/form/form2.vue')
+  },
+  {
+    path: '/form-2-success',
+    name: 'Register form 2 Success',
+    component: () => import('../views/form/form2-success.vue')
   },
 ]
 

@@ -262,7 +262,7 @@
 </template>
 
 <script>
-import { checkRegister, form3 } from '@/apis/api';
+import { checkRegister, checkSubmitted, form3 } from '@/apis/api';
 
 export default {
     data() {
@@ -366,6 +366,8 @@ export default {
     mounted() {
         document.title = 'ลงทะเบียน Form 3';
         this.checkRegister();
+        this.checkSubmitted();
+        // check submitted
     },
     methods: {
         async onSubmit() {
@@ -424,6 +426,21 @@ export default {
                     }
                     this.display = true;
                     this.loading = false;
+                },
+                cbError: (e, msg) => {
+                    this.btnLoading = false;
+                    this.loading = false;
+                    this.$toast.error('ระบบขัดข้อง');
+                },
+            });
+        },
+        async checkSubmitted() {
+            await checkSubmitted({
+                line_user_id: this.userProfile.userId,
+                cbSuccess: (res) => {
+                    if (res.status === 200 && res.data !== null) {
+                        this.$router.push('/form-3-success');
+                    }
                 },
                 cbError: (e, msg) => {
                     this.btnLoading = false;

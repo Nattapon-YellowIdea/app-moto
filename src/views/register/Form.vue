@@ -4,33 +4,30 @@
         <loading v-if="loading" color="#FFD100" :class="btnLoading === true ? 'loadingBackground' : ''" />
         <base-card :shadow="false" :cardFull="true">
             <template v-slot:header>
-                <div class="titel-page">ลงทะเบียน Form 1<br /></div>
+                <div class="titel-page">ลงทะเบียน<br /></div>
             </template>
             <template v-slot:body>
                 <div class="py-2 px-6">
                     <div class="form-group">
-                        <label>ชื่อ*</label>
                         <base-input
                             v-model="formData.first_name"
-                            placeholder="กรอกชื่อ"
+                            placeholder="ชื่อ*"
                             :error="formDirty && !formData.first_name"
                             errorMessage="กรุณากรอกชื่อ"
                         />
                     </div>
                     <div class="form-group">
-                        <label>นามสกุล*</label>
                         <base-input
                             v-model="formData.last_name"
-                            placeholder="กรอกนามสกุล"
+                            placeholder="นามสกุล"
                             :error="formDirty && !formData.last_name"
                             errorMessage="กรุณากรอกนามสกุล"
                         />
                     </div>
                     <div class="form-group">
-                        <label>โทรศัพท์มือถือ*</label>
                         <base-input
                             v-model="formData.mobile"
-                            placeholder="กรอกหมายโทรศัพท์มือถือ"
+                            placeholder="โทรศัพท์มือถือ*"
                             :error="formDirty && formData.mobile.length < 9"
                             errorMessage="กรุณากรอกหมายเลขโทรศัพท์มือถือ"
                             type="tel"
@@ -39,22 +36,20 @@
                         />
                     </div>
                     <div class="form-group">
-                        <label>อีเมล</label>
-                        <base-input v-model="formData.email" placeholder="กรอกอีเมล" />
+                        <base-input v-model="formData.email" placeholder="อีเมล" />
                     </div>
                     <div class="form-group">
                         <label>ปัจจุบันคุณเป็นลูกค้านิสสันหรือไม่หรือไม่*</label>
-                        <v-radio-group v-model="formData.nissan_customer" row hide-details class="mb-2 d-flex">
+                        <v-radio-group v-model="formData.nissan_customer" row hide-details class="mb-2 mt-0 d-flex">
                             <v-radio label="ใช่" :value="true"></v-radio>
                             <v-radio label="ไม่ใช่" :value="false"></v-radio>
                         </v-radio-group>
                         <div class="message-error" v-if="formDirty && formData.nissan_customer === null">กรุณาเลือกคำตอบ</div>
                     </div>
                     <div class="form-group">
-                        <label>รถปัจจุบันของคุณคือยี่ห้อ หรือ รุ่นใด*</label>
                         <base-select-option
                             v-model="formData.current_car_brand"
-                            placeholder="เลือกรุ่น"
+                            placeholder="รถปัจจุบันของคุณคือยี่ห้อ หรือ รุ่นใด*"
                             :error="formDirty && !formData.current_car_brand"
                             errorMessage="กรุณาเลือกรุ่นรถปัจจุบันของคุณ"
                             :options="current_car_brand_list"
@@ -69,23 +64,18 @@
                         />
                     </div>
                     <div class="form-group">
-                        <label>รุ่นรถที่สนใจ ตอบได้มากกว่า 1*</label>
-                        <v-checkbox
-                            v-for="(item, index) in interested_car_list"
-                            :key="index"
-                            :label="item"
-                            :value="item"
+                        <base-select-option
                             v-model="formData.interested_car"
-                            hide-details
-                            :error="formDirty && formData.interested_car.length === 0"
-                        ></v-checkbox>
-                        <div class="message-error" v-if="formDirty && formData.interested_car.length === 0">
+                            placeholder="รุ่นรถที่สนใจ*"
+                            :error="formDirty && !formData.interested_car"
+                            errorMessage="กรุณาเลือกรุ่นรถปัจจุบันของคุณ"
+                            :options="interested_car_list"
+                        />
+                        <div class="message-error" v-if="formDirty && formData.interested_car === ''">
                             กรุณาเลือกรุ่นรถที่สนใจ
                         </div>
                     </div>
-
                     <div class="form-group">
-                        <label>คุณมีการวางแผนที่จะซื้อรถยนต์เมื่อใด*</label>
                         <base-select-option
                             v-model="formData.buying_plan"
                             placeholder="เลือกช่วง"
@@ -95,7 +85,7 @@
                         />
                     </div>
                     <div class="form-group">
-                        <label>ปัจจัยที่ทำให้คุณตัดสินใจซื้อรถ ตอบได้มากกว่า1*</label>
+                        <label>ปัจจัยที่ทำให้คุณตัดสินใจซื้อรถ ตอบได้สูงสุด 3 ข้อ</label>
                         <v-checkbox
                             v-for="(item, index) in buying_factor_list"
                             :key="index"
@@ -104,6 +94,7 @@
                             v-model="formData.buying_factor"
                             hide-details
                             :error="formDirty && formData.buying_factor.length === 0"
+                            :disabled="formData.buying_factor.length > 2 && formData.buying_factor.indexOf(item) === -1"
                         ></v-checkbox>
                         <base-input
                             v-if="formData.buying_factor.includes('อื่นๆ')"
@@ -124,15 +115,23 @@
                     <div class="form-title">ยอมรับข้อตกลงและเงื่อนไขทั้งหมด</div>
                     <div class="form-group">
                         <v-checkbox
-                            v-model="formData.consent"
-                            label="กรุณายอมรับนโยบายคุ้มครองข้อมูลส่วนบุคคล"
+                            v-model="formData.consent_1"
+                            label="กรุณายอมรับข้อตกลงและเงื่อนไข"
                             hide-details
                             class="mt-0"
-                            :class="{ 'checkbox-error': formDirty && !formData.consent }"
                         ></v-checkbox>
-                        <div class="mt-3 pl-10 text-decoration-underline" @click="termConditionModal = true">
-                            อ่านข้อตกลงและเงื่อนไขการให้บริการ
-                        </div>
+                        <v-checkbox
+                            v-model="formData.consent_2"
+                            label="กรุณายอมรับข้อตกลงและเงื่อนไข"
+                            hide-details
+                            class="mt-2"
+                        ></v-checkbox>
+                        <v-checkbox
+                            v-model="formData.consent_3"
+                            label="กรุณายอมรับข้อตกลงและเงื่อนไข"
+                            hide-details
+                            class="mt-2"
+                        ></v-checkbox>
                     </div>
                 </div>
                 <div class="d-flex justify-center align-center pa-6">
@@ -152,10 +151,10 @@
                 </v-card-title>
                 <v-divider></v-divider>
                 <div class="term-condition">
-                    <v-tabs color="rgb(24, 103, 192)" grow class="content-tabs px-4" v-model="conditionTab">
+                    <!-- <v-tabs color="rgb(24, 103, 192)" grow class="content-tabs px-4" v-model="conditionTab">
                         <v-tab>นโยบายคุ้มครองข้อมูลส่วนบุคคล</v-tab>
                         <v-tab>ข้อตกลงการใช้เว็บไซต์</v-tab>
-                    </v-tabs>
+                    </v-tabs> -->
                     <!-- <div class="pa-4">
                         <v-tabs-items v-model="conditionTab">
                             <v-tab-item>
@@ -180,6 +179,24 @@
                 </div>
             </v-card>
         </Modal>
+        <Modal :visible="termConditionAcceptModal">
+            <v-card>
+                <v-card-title class="justify-center">
+                    <div class="term-condition-title">กรุณากดยอมรับเงื่อนไข</div>
+                </v-card-title>
+                <div class="term-condition">
+                    <div class="py-1 px-4 text-center">
+                        <v-btn
+                            class="ma-2 white--text"
+                            color="#1867c0"
+                            @click="(termConditionAcceptModal = false), (termConditionAccept_Status = true)"
+                        >
+                            ตกลง
+                        </v-btn>
+                    </div>
+                </div>
+            </v-card>
+        </Modal>
     </layout>
 </template>
 
@@ -190,14 +207,14 @@ export default {
     data() {
         const userProfile = $cookies.get('LINE_LIFF_DATA');
         return {
-            conditionTab: 0,
             display: false,
             loading: true,
             btnLoading: false,
             formDirty: false,
-            exampleModal: false,
             termConditionModal: false,
-            policy_consent: false,
+            termConditionAcceptModal: false,
+            termConditionAccept_Status: false,
+            buying_factor_checkbox_disabled: false,
             formData: {
                 first_name: '',
                 last_name: '',
@@ -205,10 +222,14 @@ export default {
                 email: '',
                 nissan_customer: null,
                 current_car_brand: '',
-                interested_car: [],
+                current_car_brand_optional: '',
+                interested_car: '',
                 buying_plan: '',
                 buying_factor: [],
-                consent: false,
+                buying_factor_optional: '',
+                consent_1: false,
+                consent_2: false,
+                consent_3: false,
                 line_user_id: userProfile.userId,
             },
             current_car_brand_list: ['ไม่มี', 'FORD', 'TOYOTA', 'MAZDA', 'GWM', 'MITSUBISHI', 'ISUZU', 'MGHONDA', 'อื่นๆ'],
@@ -253,38 +274,56 @@ export default {
     methods: {
         async onSubmit() {
             this.formDirty = true;
+
             if (
                 this.formData.first_name === '' ||
                 this.formData.last_name === '' ||
                 this.formData.mobile === '' ||
                 this.formData.nissan_customer === null ||
                 this.formData.current_car_brand === '' ||
-                this.formData.interested_car.length === 0 ||
+                this.formData.interested_car === '' ||
                 this.formData.buying_plan === '' ||
-                this.formData.buying_factor.length === 0 ||
-                this.formData.consent === false
+                this.formData.buying_factor.length === 0
             ) {
-                this.$toast.warning('กรุณากรอกข้อมูลให้ครบ');
-            } else {
-                this.btnLoading = true;
-                this.loading = true;
-                
-                await registerForm({
-                    formData: this.formData,
-                    cbSuccess: (res) => {
-                        if (res.status === 200) {
-                            this.btnLoading = false;
-                            this.loading = false;
-                            this.$router.push('/register/success');
-                        }
-                    },
-                    cbError: (e, msg) => {
+                return this.$toast.warning('กรุณากรอกข้อมูลให้ครบ');
+            }
+
+            if (
+                this.termConditionAccept_Status === false &&
+                (this.formData.consent_1 === false || this.formData.consent_2 === false || this.formData.consent_3 === false)
+            ) {
+                this.termConditionAcceptModal = true;
+                return;
+            }
+
+            if (this.formData.current_car_brand === 'อื่นๆ') {
+                this.formData.current_car_brand = this.formData.current_car_brand_optional;
+            }
+
+            if (this.formData.buying_factor.includes('อื่นๆ')) {
+                this.formData.buying_factor.push(this.formData.buying_factor_optional);
+            }
+
+            this.btnLoading = true;
+            this.loading = true;
+            await registerForm({
+                formData: {
+                    ...this.formData,
+                    buying_factor: this.formData.buying_factor.filter((e) => e !== 'อื่นๆ').toString(),
+                },
+                cbSuccess: (res) => {
+                    if (res.status === 200) {
                         this.btnLoading = false;
                         this.loading = false;
-                        this.$toast.error('ระบบขัดข้อง');
-                    },
-                });
-            }
+                        this.$router.push('/register/success');
+                    }
+                },
+                cbError: (e, msg) => {
+                    this.btnLoading = false;
+                    this.loading = false;
+                    this.$toast.error('ระบบขัดข้อง');
+                },
+            });
         },
         onNumberInput(event) {
             const key = window.event ? event.keyCode : event.which;
@@ -301,41 +340,9 @@ export default {
 </script>
 
 <style style lang="scss" scoped>
-.select-time {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    & .time-item-wrap {
-        width: 50%;
-        margin-bottom: 8px;
-        padding: 0 8px;
-        & .time-item {
-            height: 44px;
-            border: 1px solid #222222;
-            border-radius: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 18px;
-            color: #545859;
-            &.time-item-selected {
-                box-shadow: 0px 0px 6px rgba(255, 209, 0, 0.5);
-                border: 3px solid #ffd100;
-                color: #222222;
-            }
-            &.time-item-unavailable {
-                border: 1px solid #bbbbbb;
-                background: #f0f0f0;
-                color: #bbbbbb;
-                pointer-events: none;
-            }
-            &.time-item-error {
-                border: 1px solid red;
-                color: red;
-            }
-        }
-    }
+.term-condition-title {
+    font-weight: 700;
+    font-size: 18px;
 }
 .loadingBackground {
     background-color: rgba(0, 0, 0, 0.5);
